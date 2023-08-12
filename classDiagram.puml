@@ -1,0 +1,83 @@
+@startuml DocumentGeneratorSystem
+
+Class Client
+{
+    Client():void;
+}
+Client-->DocumentFactory
+Class DocumentFactory
+{
+    #invoice:Documetn*
+    #report:Document*
+
+   +static createPrototype(string):Document*
+    
+}
+
+DocumentFactory-->Document
+DocumentFactory ...>Invoice
+
+abstract Document
+{
+    #DocumentName:string
+    #DocumentId:unsigned int
+    +Document():void
+    +Document(string, int):void
+    +virtual clone():Document*
+}
+class Report extends Document
+{
+    #reportId:int
+    #title:string
+    #content:String
+    #conclusion:string
+
+    +Report():void 
+    +setReportId(int):void
+    +SetTeportTitle(string):void 
+    +setContent(string):void
+    +setConclusion(string):void 
+    +setDocumentId(int):void 
+    +setDocumentName(string):void
+
+    +getReportId():int
+    +getTeportTitle():strign 
+    +getContent():strign
+    +getConclusion():strign 
+    +getDocumentId():int
+    +getDocumentName():strign
+
+    +clone(*this) override: Document*
+}
+class Invoice extends Document
+{
+    #invoiceId: int
+    #invoiceName:string
+    #issueDate:string
+    #dueDate :string
+    #sellerName:string 
+    #sellerGstNo:unsigned int
+    #buyerName:string 
+    #sumTotal:unsigned int
+
+    +setinvoiceId( int):void
+    +setinvoiceName(string):void
+    +setissueDate(string):void
+    +setdueDate (string):void
+    +setsellerName(string):void 
+    +setsellerGstNo(unsigned int):void
+    +setbuyerName(string):void 
+    +setsumTotal(unsigned int):void
+
+    +getinvoiceId():int
+    +getinvoiceName():string
+    +getissueDate():string
+    +getdueDate ():string 
+    +getsellerName():string  
+    +getsellerGstNo():unsigned int 
+    +getbuyerName():strign
+    +getsumTotal():unsigned int 
+
+    +clone(*this) override: Document
+}
+
